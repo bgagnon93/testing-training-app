@@ -11,3 +11,69 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#container-header {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#about-you {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.page-text-header {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.textbox-container {
+  padding-bottom: 10px;
+}
+
+.texbox-input {
+  height: 45px;
+  font-size: 1.2em;
+  width: 100%;
+  padding: 6px 15px 8px 15px;
+}
+
+.texbox-header {
+  font-size: 1em;
+  text-align: left;
+}
+
+.select-container {
+  padding-bottom: 10px;
+}
+
+.select-header {
+  font-size: 1em;
+  text-align: left;
+}
+
+.modal-button-glyph {
+  font-size: 1.8em;
+}
+
+.modal-button-text {
+  font-size: 1.3em;
+}
+
+.modal-button {
+  box-shadow: inset;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.header-progress-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.header-progress-number {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  fill: white;
+}
