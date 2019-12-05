@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/testing-training-app/static/css/main.b61bec15.chunk.css",
-    "main.js": "/testing-training-app/static/js/main.d3ae2ecd.chunk.js",
-    "main.js.map": "/testing-training-app/static/js/main.d3ae2ecd.chunk.js.map",
+    "main.js": "/testing-training-app/static/js/main.0f7834fa.chunk.js",
+    "main.js.map": "/testing-training-app/static/js/main.0f7834fa.chunk.js.map",
     "runtime-main.js": "/testing-training-app/static/js/runtime-main.f6abb590.js",
     "runtime-main.js.map": "/testing-training-app/static/js/runtime-main.f6abb590.js.map",
     "static/js/2.12e1940b.chunk.js": "/testing-training-app/static/js/2.12e1940b.chunk.js",
     "static/js/2.12e1940b.chunk.js.map": "/testing-training-app/static/js/2.12e1940b.chunk.js.map",
     "index.html": "/testing-training-app/index.html",
-    "precache-manifest.4e179ed383314ed6946d5677cc859290.js": "/testing-training-app/precache-manifest.4e179ed383314ed6946d5677cc859290.js",
+    "precache-manifest.cb6a991a9102f254d72c55b1a5edce6b.js": "/testing-training-app/precache-manifest.cb6a991a9102f254d72c55b1a5edce6b.js",
     "service-worker.js": "/testing-training-app/service-worker.js",
     "static/css/main.b61bec15.chunk.css.map": "/testing-training-app/static/css/main.b61bec15.chunk.css.map",
     "static/media/logo.svg": "/testing-training-app/static/media/logo.25bf045c.svg"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.f6abb590.js",
     "static/js/2.12e1940b.chunk.js",
     "static/css/main.b61bec15.chunk.css",
-    "static/js/main.d3ae2ecd.chunk.js"
+    "static/js/main.0f7834fa.chunk.js"
   ]
 }
