@@ -1,8 +1,6 @@
 import React from 'react'
 import TextField from '../reusable-components/TextField'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import { Container, Row, Col } from 'react-bootstrap'
 
 class AboutYou extends React.Component {
     constructor(props) {

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import {Container, Row, Col} from 'react-bootstrap'
+import { Modal, Button, ButtonToolbar } from 'react-bootstrap'
 import SelectField from '../reusable-components/SelectField'
+import ModalButton from '../reusable-components/ModalButton'
 
 const options = [
     { value: 'car', label: 'Car/SUV/Pickup/Van' },
@@ -26,6 +26,8 @@ class AddVehicle extends React.Component {
             'Vehicle Year': (item && item['Vehicle Year'] ? item['Vehicle Year'] : ''),
             'Vehicle Make': (item && item['Vehicle Make'] ? item['Vehicle Make'] : ''),
             'Vehicle Model': (item && item['Vehicle Model'] ? item['Vehicle Model'] : ''),
+            'Name': (item && item['Name'] ? item['Name'] : ''),
+            'count': this.props.count,
             modelList: [],
         }
         
@@ -48,19 +50,19 @@ class AddVehicle extends React.Component {
         .then(data => this.handleModel(data.Results))
     }
 
-    addVehicle(vehicle) {
-        this.props.handleAdd()
-        this.props.addVehicle(vehicle)
+    addVehicle() {
+        this.setState({modalShow: false})
+        this.setState({'Name': `${this.state['Vehicle Year']} ${this.state['Vehicle Make']} ${this.state['Vehicle Model']}`}, ()=>{this.props.addVehicle(this.state)})
     }
 
-    saveVehicle(vehicle) {
-        this.props.handleAdd()
-        this.props.saveVehicle(vehicle)
+    saveVehicle() {
+        this.setState({modalShow: false})
+        this.setState({'Name': `${this.state['Vehicle Year']} ${this.state['Vehicle Make']} ${this.state['Vehicle Model']}`}, ()=>{this.props.saveVehicle(this.state)})
     }
 
-    removeVehicle(vehicle) {
-        this.props.handleAdd()
-        this.props.removeVehicle(vehicle)
+    removeVehicle() {
+        this.setState({modalShow: false})
+        this.props.removeVehicle(this.state)
     }
 
     getYearList() {
@@ -116,34 +118,50 @@ class AddVehicle extends React.Component {
     }
 
     render() {
-        if(this.props.setItemState) {
-            this.addVehicle({
-                'Name': `${this.state['Vehicle Year']} ${this.state['Vehicle Make']} ${this.state['Vehicle Model']}`,
-                'Vehicle Type': this.state['Vehicle Type'],
-                'Vehicle Year': this.state['Vehicle Year'],
-                'Vehicle Make': this.state['Vehicle Make'],
-                'Vehicle Model': this.state['Vehicle Model'],
-                'count': this.state['count']
-            }
-            )
+        let modalFooter = []
+        if(this.props.newItem === true) 
+            modalFooter.push(<Button onClick={this.addVehicle}>Add</Button>)
+        else {
+            modalFooter.push(<Button onClick={this.saveVehicle}>Save</Button>)
+            modalFooter.push(<Button onClick={this.removeVehicle}>Remove</Button>)
         }
+            
+        modalFooter.push(<Button onClick={() => this.setState({modalShow: false})}>Close</Button>)
 
         return (
-            <Container>
-                <Row>
-                    <Col>
-                        <SelectField name="vehicle-type" onChange={(e)=>this.setState({'Vehicle Type': e})} options={options} fieldNameHeader="What type of vehicle would you like to add?" fieldName="vehicle-type" value={this.props.item['Vehicle Type']}/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={12}><hr/></Col>
-                </Row>
-                <Row>
-                    <Col lg={3} md={4}><SelectField name="vehicle-year" onChange={(e)=>this.setState({'Vehicle Year': e})} options={yearList} fieldNameHeader="Year" fieldName="year" value={this.props.item['Vehicle Year']}/></Col>
-                    <Col lg={5} md={8}><SelectField name="vehicle-make" onChange={this.handleChangeMake} options={makeList} fieldNameHeader="Make" fieldName="make" value={this.props.item['Vehicle Make']}/></Col>
-                    <Col lg={4} md={12}><SelectField name="vehicle-model" onChange={(e)=>this.setState({'Vehicle Model': e})} options={this.state.modelList} fieldNameHeader="Model" fieldName="model" value={this.props.item['Vehicle Model']}/></Col>
-                </Row>
-            </Container>
+            <ButtonToolbar>
+                <ModalButton name="add-item" updateModalShow={() => this.setState({modalShow: true})} modalButtonText={this.props.modalButtonText} modalGlyph={this.props.modalGlyph}/>
+                <Modal
+                    show={this.state.modalShow}
+                    onHide={() => this.setState({modalShow: false})}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered>
+                    <Modal.Header>
+                        <Modal.Title id="contained-modal-title-vcenter">Add a Vehicle</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <SelectField name="vehicle-type" onChange={(e)=>this.setState({'Vehicle Type': e})} options={options} fieldNameHeader="What type of vehicle would you like to add?" fieldName="vehicle-type" value={this.props.item['Vehicle Type']}/>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}><hr/></Col>
+                            </Row>
+                            <Row>
+                                <Col lg={3} md={4}><SelectField name="vehicle-year" onChange={(e)=>this.setState({'Vehicle Year': e})} options={yearList} fieldNameHeader="Year" fieldName="year" value={this.props.item['Vehicle Year']}/></Col>
+                                <Col lg={5} md={8}><SelectField name="vehicle-make" onChange={this.handleChangeMake} options={makeList} fieldNameHeader="Make" fieldName="make" value={this.props.item['Vehicle Make']}/></Col>
+                                <Col lg={4} md={12}><SelectField name="vehicle-model" onChange={(e)=>this.setState({'Vehicle Model': e})} options={this.state.modelList} fieldNameHeader="Model" fieldName="model" value={this.props.item['Vehicle Model']}/></Col>
+                            </Row>
+                        </Container>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {modalFooter}
+                    </Modal.Footer>
+                </Modal>
+            </ButtonToolbar>
         )
     }
 }

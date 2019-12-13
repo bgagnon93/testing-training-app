@@ -57,7 +57,14 @@ class MainContent extends React.Component {
     }
 
     removeDriver(driver) {
-
+        this.setState(prevState => {
+            prevState.drivers.splice(prevState.drivers.indexOf(driver), 1)
+            return {
+                ...prevState,
+                drivers: prevState.drivers
+            }
+        })
+        return
     }
 
     addVehicle(vehicle) {
@@ -86,7 +93,14 @@ class MainContent extends React.Component {
     }
 
     removeVehicle(vehicle) {
-
+        this.setState(prevState => {
+            prevState.vehicles.splice(prevState.vehicles.indexOf(vehicle), 1)
+            return {
+                ...prevState,
+                vehicles: prevState.vehicles
+            }
+        })
+        return
     }
 
     nextPage() {

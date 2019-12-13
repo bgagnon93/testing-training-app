@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+Button {
+  cursor: pointer;
+}
+
 /* HEADER */
 #container-header {
   margin-top: 30px;
