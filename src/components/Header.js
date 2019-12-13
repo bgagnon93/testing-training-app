@@ -28,7 +28,7 @@ class CircleCounter extends React.Component {
                     <Circle cx="20" cy="20" r="16" fill="#007bff" />
                     <text textAnchor="middle" x="20" y="25" className="header-progress-number">{this.props.number}</text>
                 </SVGComponent>
-                <text className="header-progress-text">{this.props.text}</text>
+                <span className="header-progress-text">{this.props.text}</span>
             </div>
         )
     }

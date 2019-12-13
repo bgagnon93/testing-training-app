@@ -2,12 +2,27 @@ import React from 'react'
 import Select from 'react-select'
 
 class SelectField extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {value: (this.props.value ? this.props.value : '')}
+        this.handleChange = this.handleChange.bind(this)
+    }
 
-    render(props) {
+    handleChange(e) {
+        this.setState({value: e.label})
+        this.props.onChange(e.label)
+    }
+
+    render() {
         return (
             <div className="select-container">
                 <h4 className="select-header">{this.props.fieldNameHeader}</h4>
-                <Select onChange={this.props.onChange} options={this.props.options} type="text" name={this.props.fieldName} className="texbox-input"></Select>
+                <Select onChange={this.handleChange} 
+                    options={this.props.options} type="text" 
+                    name={this.props.fieldName} 
+                    defaultValue={{label: this.state.value, value: this.state.value}}
+                    className="texbox-input">
+                </Select>
             </div>
         )
     }
