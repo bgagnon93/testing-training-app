@@ -21,7 +21,8 @@ class SelectField extends React.Component {
                     options={this.props.options} type="text" 
                     name={this.props.fieldName} 
                     defaultValue={{label: this.state.value, value: this.state.value}}
-                    className="texbox-input">
+                    className="texbox-input"
+                    isDisabled={this.props.disabled}>
                 </Select>
             </div>
         )

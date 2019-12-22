@@ -17,12 +17,11 @@ class TextField extends React.Component {
             this.props.handleOnBlur(e.target.value)
     }
 
-    render(props) {
-
+    render() {
         return(
             <div className="textbox-container">
-                <h4 className="texbox-header">{this.props.fieldNameHeader}</h4>
-                <input type="text" name={this.props.fieldName} className="texbox-input" onBlur={this.handleOnBlur} value={this.state.value} onChange={this.handleChange}></input>
+                <div className="texbox-header"><span>{this.props.fieldNameHeader}</span><span className="texbox-subheader">{this.props.subHeader}</span></div>
+                <input type="text" name={this.props.fieldName} className="texbox-input" onBlur={this.handleOnBlur} value={this.state.value} onChange={this.handleChange} disabled={this.props.disabled}></input>
             </div>
         )
     }

@@ -45,7 +45,7 @@ class MainContent extends React.Component {
         for (let i = 0; i < this.state.drivers.length; i++) {
             if (driver['count'] === this.state.drivers[i]['count']) {
                 this.setState(prevState => {
-                    prevState.drivers[driver['count']] = driver
+                    prevState.drivers[i] = driver
                     return {
                         ...prevState,
                         drivers: prevState.drivers
@@ -57,14 +57,18 @@ class MainContent extends React.Component {
     }
 
     removeDriver(driver) {
+        let newDrivers = []
+        for (let i = 0; i < this.state.drivers.length; i++) {
+            if (driver['count'] != this.state.drivers[i]['count']) {
+                newDrivers.push(this.state.drivers[i])
+            }
+        }
         this.setState(prevState => {
-            prevState.drivers.splice(prevState.drivers.indexOf(driver), 1)
             return {
                 ...prevState,
-                drivers: prevState.drivers
+                drivers: newDrivers
             }
         })
-        return
     }
 
     addVehicle(vehicle) {

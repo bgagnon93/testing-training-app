@@ -32,6 +32,8 @@ class AboutYou extends React.Component {
     }
 
     render() {
+        let optional = <span className="texbox-subheader-optional">(optional)</span>
+        let required = <span className="texbox-subheader-required">*</span>
         return (
             <div>
                 <Container id="about-you" className="main-content-container">
@@ -40,14 +42,13 @@ class AboutYou extends React.Component {
                     </Row>
                     <Row>
                         <Col sm={5} xs={9}><TextField fieldNameHeader="First Name" fieldName="first-name" handleOnBlur={(e)=>this.setState({'First Name': e})} value={this.props.aboutYou['First Name']}/></Col>
-                        {/* <Col sm={5} xs={9}><TextField fieldNameHeader="First Name" fieldName="first-name" handleOnBlur={(e)=>this.setState({'First Name': e}, console.log(e))}/></Col> */}
-                        <Col sm={2} xs={3}><TextField fieldNameHeader="MI" fieldName="middle-name" handleOnBlur={(e)=>this.setState({'Middle Name': e})} value={this.props.aboutYou['Middle Name']}/></Col>
+                        <Col sm={2} xs={3}><TextField fieldNameHeader="MI" subHeader="(optional)" fieldName="middle-name" handleOnBlur={(e)=>this.setState({'Middle Name': e})} value={this.props.aboutYou['Middle Name']}/></Col>
                         <Col sm={5}><TextField fieldNameHeader="Last Name" fieldName="last-name" handleOnBlur={(e)=>this.setState({'Last Name': e})} value={this.props.aboutYou['Last Name']}/></Col>
                     </Row>
 
                     <Row>
                         <Col sm={10}><TextField fieldNameHeader="Street Address" fieldName="street-address" handleOnBlur={(e)=>this.setState({'Street': e})} value={this.props.aboutYou['Street']}/></Col>
-                        <Col sm={2}><TextField fieldNameHeader="Apt/Suite" fieldName="apt" handleOnBlur={(e)=>this.setState({'Apt': e})} value={this.props.aboutYou['Apt']}/></Col>
+                        <Col sm={2}><TextField fieldNameHeader="Apt/Suite" subHeader="(optional)" fieldName="apt" handleOnBlur={(e)=>this.setState({'Apt': e})} value={this.props.aboutYou['Apt']}/></Col>
                     </Row>
 
                     <Row>
@@ -58,8 +59,8 @@ class AboutYou extends React.Component {
 
                     <Row>
                         <Col sm={4}><TextField fieldNameHeader="Date of Birth" fieldName="date-of-birth" handleOnBlur={(e)=>this.setState({'Date of Birth': e})} value={this.props.aboutYou['Date of Birth']}/></Col>
-                        <Col sm={4}><TextField fieldNameHeader="Email" fieldName="email" handleOnBlur={(e)=>this.setState({'Email': e})} value={this.props.aboutYou['Email']}/></Col>
-                        <Col sm={4}><TextField fieldNameHeader="Phone" fieldName="phone" handleOnBlur={(e)=>this.setState({'Phone': e})} value={this.props.aboutYou['Phone']}/></Col>
+                        <Col sm={4}><TextField fieldNameHeader="Email" subHeader="(optional)" fieldName="email" handleOnBlur={(e)=>this.setState({'Email': e})} value={this.props.aboutYou['Email']}/></Col>
+                        <Col sm={4}><TextField fieldNameHeader="Phone" subHeader="(optional)" fieldName="phone" handleOnBlur={(e)=>this.setState({'Phone': e})} value={this.props.aboutYou['Phone']}/></Col>
                     </Row>
 
                     <Row className="next-prev-row">

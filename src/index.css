@@ -60,7 +60,15 @@ Button {
 
 .texbox-header {
   font-size: 1em;
+  font-weight: 500;
   text-align: left;
+}
+
+.texbox-subheader {
+  font-size: 0.8em;
+  font-weight: 400;
+  padding-left: 10px;
+  color: gray;
 }
 
 /* SELECT FIELD COMPONENT */

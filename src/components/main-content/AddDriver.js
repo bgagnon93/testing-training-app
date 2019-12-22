@@ -28,7 +28,8 @@ class AddDriver extends React.Component {
             'Date of Birth': (item && item['Date of Birth'] ? item['Date of Birth'] : ''),
             'Relation to You': (item && item['Relation to You'] ? item['Relation to You'] : ''),
             'Name': (item && item['Name'] ? item['Name'] : ''),
-            'count': this.props.count
+            'count': this.props.count,
+            'edit': ''
         }
         this.addDriver = this.addDriver.bind(this)
         this.saveDriver = this.saveDriver.bind(this)
@@ -36,41 +37,60 @@ class AddDriver extends React.Component {
     }
 
     addDriver() {
+        this.setState({modalShow: false})
+        this.setState({'edit': 'disabled'})
         this.setState({'Name': `${this.state['First Name']} ${this.state['Last Name']}`}, ()=>{this.props.addDriver(this.state)})
     }
 
+    editDriver() {
+        this.setState({'edit': ''})
+    }
+
     saveDriver() {
+        this.setState({modalShow: false})
+        this.setState({'edit': 'disabled'})
         this.setState({'Name': `${this.state['First Name']} ${this.state['Last Name']}`}, ()=>{this.props.saveDriver(this.state)})
     }
 
-    removeDriver(driver) {
-        this.props.removeDriver(driver)
+    removeDriver() {
+        this.setState({modalShow: false})
+        this.setState({'edit': ''})
+        this.props.removeDriver(this.state)
     }
+
+    addButton = <Button onClick={() => this.addDriver()}>Add</Button>
+    saveButton = <Button onClick={() => this.saveDriver()}>Save</Button>
+    editButton = <Button onClick={() => this.editDriver()}>Edit</Button>
+    closeButton = <Button onClick={() => this.setState({modalShow: false})}>Close</Button>
+    removeButton = <Button onClick={() => this.removeDriver()}>Remove</Button>
+
 
     render() {
         let modalFooter
         if(this.props.newItem === true) {
             modalFooter = 
             <Modal.Footer>
-                <Button onClick={() => {
-                    this.setState({modalShow: false})
-                    this.addDriver()
-                }}>Add</Button>
-                <Button onClick={() => this.setState({modalShow: false})}>Close</Button>
+                {this.addButton}
+                {this.closeButton}
             </Modal.Footer>
         } else {
-            modalFooter = 
-            <Modal.Footer>
-                <Button onClick={() => {
-                    this.setState({modalShow: false})
-                    this.saveDriver()
-                }}>Save</Button>
-                <Button onClick={() => {
-                    this.setState({modalShow: false})
-                    this.removeDriver()
-                }}>Remove</Button>
-                <Button onClick={() => this.setState({modalShow: false})}>Close</Button>
-            </Modal.Footer>
+            if(this.state.edit === '') {
+                modalFooter = 
+                    <Modal.Footer>
+                        {this.saveButton}
+                        <Button onClick={() => {
+                            this.setState({modalShow: false})
+                            this.setState({'edit': 'disabled'})
+                            }}>Close</Button>
+                    </Modal.Footer>
+            } else {
+                modalFooter = 
+                    <Modal.Footer>
+                        {this.editButton}
+                        {this.removeButton}
+                        {this.closeButton}
+                    </Modal.Footer>
+            }
         }
 
         return (
@@ -78,7 +98,11 @@ class AddDriver extends React.Component {
                 <ModalButton name="add-item" updateModalShow={() => this.setState({modalShow: true})} modalButtonText={this.props.modalButtonText} modalGlyph={this.props.modalGlyph}/>
                 <Modal
                     show={this.state.modalShow}
-                    onHide={() => this.setState({modalShow: false})}
+                    onHide={() => {
+                        this.setState({modalShow: false})
+                        if(this.props.newItem === false)
+                            this.setState({'edit': 'disabled'})
+                    }}
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered>
@@ -88,11 +112,11 @@ class AddDriver extends React.Component {
                     <Modal.Body>
                         <Container>
                             <Row>
-                                <Col sm={6} xs={9}><TextField fieldNameHeader="First Name" fieldName="first-name" handleOnBlur={(e)=>this.setState({'First Name': e})} value={this.props.item['First Name']}/></Col>
-                                <Col sm={6} xs={3}><TextField fieldNameHeader="MI" fieldName="middle-name" handleOnBlur={(e)=>this.setState({'Middle Name': e})} value={this.props.item['Middle Name']}/></Col>
-                                <Col sm={6} xs={9}><TextField fieldNameHeader="Last Name" fieldName="last-name" handleOnBlur={(e)=>this.setState({'Last Name': e})} value={this.props.item['Last Name']}/></Col>
-                                <Col sm={6} xs={9}><TextField fieldNameHeader="Date of Birth" fieldName="date-of-birth" handleOnBlur={(e)=>this.setState({'Date of Birth': e})} value={this.props.item['Date of Birth']}/></Col>
-                                <Col sm={6} xs={9}><SelectField options={options} fieldNameHeader="Relation to You" fieldName="relation-to-you" onChange={(e)=>this.setState({'Relation to You': e})} value={this.props.item['Relation to You']}/></Col>
+                                <Col sm={6} xs={9}><TextField fieldNameHeader="First Name" fieldName="first-name" handleOnBlur={(e)=>this.setState({'First Name': e})} value={this.props.item['First Name']} disabled={this.state.edit}/></Col>
+                                <Col sm={6} xs={3}><TextField fieldNameHeader="MI" fieldName="middle-name" handleOnBlur={(e)=>this.setState({'Middle Name': e})} value={this.props.item['Middle Name']} disabled={this.state.edit}/></Col>
+                                <Col sm={6} xs={9}><TextField fieldNameHeader="Last Name" fieldName="last-name" handleOnBlur={(e)=>this.setState({'Last Name': e})} value={this.props.item['Last Name']} disabled={this.state.edit}/></Col>
+                                <Col sm={6} xs={9}><TextField fieldNameHeader="Date of Birth" fieldName="date-of-birth" handleOnBlur={(e)=>this.setState({'Date of Birth': e})} value={this.props.item['Date of Birth']} disabled={this.state.edit}/></Col>
+                                <Col sm={6} xs={9}><SelectField options={options} fieldNameHeader="Relation to You" fieldName="relation-to-you" onChange={(e)=>this.setState({'Relation to You': e})} value={this.props.item['Relation to You']} disabled={this.state.edit}/></Col>
                             </Row>
                         </Container>
                     </Modal.Body>
