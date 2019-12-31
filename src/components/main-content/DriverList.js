@@ -9,11 +9,11 @@ class DriverList extends React.Component {
         const buttonList = []
         let itemCount = 0
         for(let driver of this.props.drivers) {
-            buttonList.push(<Col lg={3} md={4} sm={12}>
+            buttonList.push(<Col lg={4} md={6} sm={12} key={driver.Name}>
                 <AddDriver {...this.props} item={driver} modalButtonText={driver.Name} modalGlyph={<IoIosPerson/>} count={driver.count} newItem={false}/></Col>)
                 itemCount = driver.count
         }
-        buttonList.push(<Col lg={3} md={4} sm={12}>
+        buttonList.push(<Col lg={4} md={6} sm={12} key={"New Driver " + itemCount+1}>
             <AddDriver {...this.props} item={{}} modalButtonText="Add Driver" modalGlyph={<IoIosAddCircleOutline/>} count={itemCount+1} newItem={true}/></Col>)
         return (
             <Container className="main-content-container">
@@ -22,9 +22,9 @@ class DriverList extends React.Component {
                 </Row>
                 <Row>{buttonList}</Row>
                 <Row className="next-prev-row">
-                    <Col sm={4}><button name="previous" type="button" className="btn btn-primary btn-prev-page" onClick={this.props.previousPage}>Previous: Edit Vehicles</button></Col>
-                    <Col sm={4}>{'\u00A0'}</Col>
-                    <Col sm={4}><button name="next" type="button" className="btn btn-primary btn-next-page" onClick={this.props.nextPage}>Submit</button></Col>
+                    <Col lg={3} sm={5} xs={6}><button name="previous" type="button" className="btn btn-primary btn-prev-page btn-page-nav" onClick={this.props.previousPage}>Previous: Edit Vehicles</button></Col>
+                    <Col lg={7} sm={2} className="d-none d-sm-block">{'\u00A0'}</Col>
+                    <Col lg={2} sm={5} xs={6}><button name="next" type="button" className="btn btn-primary btn-next-page btn-page-nav" onClick={this.props.nextPage}>Submit</button></Col>
                 </Row>
             </Container>
         )

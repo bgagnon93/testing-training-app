@@ -41,31 +41,31 @@ class AboutYou extends React.Component {
                         <Col><h4 id="about-you-title" className="page-text-header">Tell us about yourself...</h4></Col>
                     </Row>
                     <Row>
-                        <Col sm={5} xs={9}><TextField fieldNameHeader="First Name" fieldName="first-name" handleOnBlur={(e)=>this.setState({'First Name': e})} value={this.props.aboutYou['First Name']}/></Col>
-                        <Col sm={2} xs={3}><TextField fieldNameHeader="MI" subHeader="(optional)" fieldName="middle-name" handleOnBlur={(e)=>this.setState({'Middle Name': e})} value={this.props.aboutYou['Middle Name']}/></Col>
-                        <Col sm={5}><TextField fieldNameHeader="Last Name" fieldName="last-name" handleOnBlur={(e)=>this.setState({'Last Name': e})} value={this.props.aboutYou['Last Name']}/></Col>
+                        <Col md={5} xs={6}><TextField fieldNameHeader="First Name" fieldName="first-name" handleOnBlur={(e)=>this.setState({'First Name': e})} value={this.props.aboutYou['First Name']}/></Col>
+                        <Col md={2} className="d-none d-md-block"><TextField fieldNameHeader="MI" subHeader="(optional)" fieldName="middle-name" handleOnBlur={(e)=>this.setState({'Middle Name': e})} value={this.props.aboutYou['Middle Name']}/></Col>
+                        <Col md={5} xs={6}><TextField fieldNameHeader="Last Name" fieldName="last-name" handleOnBlur={(e)=>this.setState({'Last Name': e})} value={this.props.aboutYou['Last Name']}/></Col>
                     </Row>
 
                     <Row>
-                        <Col sm={10}><TextField fieldNameHeader="Street Address" fieldName="street-address" handleOnBlur={(e)=>this.setState({'Street': e})} value={this.props.aboutYou['Street']}/></Col>
-                        <Col sm={2}><TextField fieldNameHeader="Apt/Suite" subHeader="(optional)" fieldName="apt" handleOnBlur={(e)=>this.setState({'Apt': e})} value={this.props.aboutYou['Apt']}/></Col>
+                        <Col md={10} xs={8}><TextField fieldNameHeader="Street Address" fieldName="street-address" handleOnBlur={(e)=>this.setState({'Street': e})} value={this.props.aboutYou['Street']}/></Col>
+                        <Col md={2} xs={4}><TextField fieldNameHeader="Apt/Suite" subHeader="(optional)" fieldName="apt" handleOnBlur={(e)=>this.setState({'Apt': e})} value={this.props.aboutYou['Apt']}/></Col>
                     </Row>
 
                     <Row>
-                        <Col sm={8}><TextField fieldNameHeader="City" fieldName="city" handleOnBlur={(e)=>this.setState({'City': e})} value={this.props.aboutYou['City']}/></Col>
-                        <Col sm={2}><TextField fieldNameHeader="State" fieldName="state" handleOnBlur={(e)=>this.setState({'State': e})} value={this.props.aboutYou['State']}/></Col>
-                        <Col sm={2}><TextField fieldNameHeader="Zip Code" fieldName="zip-code" handleOnBlur={(e)=>this.setState({'Zip': e})} value={this.props.aboutYou['Zip']}/></Col>
+                        <Col md={8} xs={5}><TextField fieldNameHeader="City" fieldName="city" handleOnBlur={(e)=>this.setState({'City': e})} value={this.props.aboutYou['City']}/></Col>
+                        <Col md={2} xs={3}><TextField fieldNameHeader="State" fieldName="state" handleOnBlur={(e)=>this.setState({'State': e})} value={this.props.aboutYou['State']}/></Col>
+                        <Col md={2} xs={4}><TextField fieldNameHeader="Zip Code" fieldName="zip-code" handleOnBlur={(e)=>this.setState({'Zip': e})} value={this.props.aboutYou['Zip']}/></Col>
                     </Row>
 
                     <Row>
-                        <Col sm={4}><TextField fieldNameHeader="Date of Birth" fieldName="date-of-birth" handleOnBlur={(e)=>this.setState({'Date of Birth': e})} value={this.props.aboutYou['Date of Birth']}/></Col>
-                        <Col sm={4}><TextField fieldNameHeader="Email" subHeader="(optional)" fieldName="email" handleOnBlur={(e)=>this.setState({'Email': e})} value={this.props.aboutYou['Email']}/></Col>
-                        <Col sm={4}><TextField fieldNameHeader="Phone" subHeader="(optional)" fieldName="phone" handleOnBlur={(e)=>this.setState({'Phone': e})} value={this.props.aboutYou['Phone']}/></Col>
+                        <Col md={4} xs={6}><TextField fieldNameHeader="Date of Birth" fieldName="date-of-birth" handleOnBlur={(e)=>this.setState({'Date of Birth': e})} value={this.props.aboutYou['Date of Birth']}/></Col>
+                        <Col md={4} xs={6}><TextField fieldNameHeader="Phone" subHeader="(optional)" fieldName="phone" handleOnBlur={(e)=>this.setState({'Phone': e})} value={this.props.aboutYou['Phone']}/></Col>
+                        <Col md={4}><TextField fieldNameHeader="Email" subHeader="(optional)" fieldName="email" handleOnBlur={(e)=>this.setState({'Email': e})} value={this.props.aboutYou['Email']}/></Col>
                     </Row>
 
                     <Row className="next-prev-row">
-                        <Col sm={8}>{'\u00A0'}</Col>
-                        <Col sm={4}><button name="next" type="button" className="btn btn-primary btn-next-page" onClick={this.isComplete}>Next: Add Vehicles</button></Col>
+                        <Col xl={10} lg={9} md={8} sm={2} className="d-none d-sm-block">{'\u00A0'}</Col>
+                        <Col xl={2} lg={3} md={4}><button name="next" type="button" className="btn btn-primary btn-next-page btn-page-nav" onClick={this.isComplete}>Next: Add Vehicles</button></Col>
                     </Row>
                 </Container>
             </div>

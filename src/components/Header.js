@@ -23,13 +23,17 @@ class Circle extends React.Component {
 class CircleCounter extends React.Component {
     render(props) {
         return (
-            <div>
-                <SVGComponent height="40" width="50">
+            <Col xs={4} className="header-status">
+                <div className="circle">
+                    <p className="header-progress-number">{this.props.number}</p>
+                </div>
+                <span className="header-progress-text">{this.props.text}</span>
+                {/* <SVGComponent height="40" width="50">
                     <Circle cx="20" cy="20" r="16" fill="#007bff" />
                     <text textAnchor="middle" x="20" y="25" className="header-progress-number">{this.props.number}</text>
                 </SVGComponent>
-                <span className="header-progress-text">{this.props.text}</span>
-            </div>
+                <span className="header-progress-text">{this.props.text}</span> */}
+            </Col>
         )
     }
 }
@@ -39,20 +43,9 @@ class Header extends React.Component {
         return (
             <Container id="container-header">
                 <Row>
-                    <Col>
-                        
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={4}>
-                        <CircleCounter text="About You" number="1"/>
-                    </Col>
-                    <Col xs={4}>
-                        <CircleCounter text="Your Vehicles" number="2"/>
-                    </Col>
-                    <Col xs={4}>
-                        <CircleCounter text="Your Drivers" number="3"/>
-                    </Col>
+                    <CircleCounter text="About You" number="1"/>
+                    <CircleCounter text="Your Vehicles" number="2"/>
+                    <CircleCounter text="Your Drivers" number="3"/>
                 </Row>
             </Container>
         )

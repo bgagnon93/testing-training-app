@@ -16,12 +16,12 @@ class SelectField extends React.Component {
     render() {
         return (
             <div className="select-container">
-                <h4 className="select-header">{this.props.fieldNameHeader}</h4>
+                <div className="texbox-header"><span>{this.props.fieldNameHeader}</span><span className="texbox-subheader">{this.props.subHeader}</span></div>
                 <Select onChange={this.handleChange} 
                     options={this.props.options} type="text" 
                     name={this.props.fieldName} 
                     defaultValue={{label: this.state.value, value: this.state.value}}
-                    className="texbox-input"
+                    className="select-menu texbox-input"
                     isDisabled={this.props.disabled}>
                 </Select>
             </div>
