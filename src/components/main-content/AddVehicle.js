@@ -64,7 +64,7 @@ class AddVehicle extends React.Component {
         }, ()=>{this.props.addVehicle(this.state)})
     }
 
-    editDriver() {
+    editVehicle() {
         this.setState({'edit': ''})
     }
 

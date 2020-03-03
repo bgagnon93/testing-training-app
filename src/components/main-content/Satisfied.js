@@ -73,8 +73,8 @@ class Satisfied extends React.Component {
                     </Col>
                 </Row>
                 <Row className="next-prev-row">
-                    <Col sm={4}><button name="previous" type="button" className="btn btn-primary btn-next-page" onClick={this.props.previousPage}>Previous: Your Drivers</button></Col>
-                    <Col sm={4}>{'\u00A0'}</Col>
+                    <Col lg={3} sm={5} xs={6}><button name="previous" type="button" className="btn btn-primary btn-prev-page btn-page-nav" onClick={this.props.previousPage}>Previous: Your Drivers</button></Col>
+                    {/* <Col sm={4}>{'\u00A0'}</Col> */}
                 </Row>
             </Container>
                 
