@@ -13,9 +13,6 @@ https://policytrainer.orange-lightning.com/
 
 ### `nvm use v15.3.0`
 This project does not support the latest version of Node. Downgrade to a working version of node (using nvm) in order to build and start the project. 
-```
-nvm use v15.3.0
-```
 
 ### `npm install`
 
