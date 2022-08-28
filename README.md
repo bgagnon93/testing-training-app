@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About 
 
-## Available Scripts
+The Testing Training Application was created in order to train testers on end to end test frameworks. The application is a simplified version of an Insurance company's Policy system. It requests information on the user, basic vehicle details, and other vehicle drivers they may wish to add to the policy. The final page is a limited review of all information entered on previous screens. 
 
-In the project directory, you can run:
+From a test perspective, the training application highlights how important data management is. The 'About You' page requries a half-dozen fields before proceeding to the Vehicle page (this feature is currently disabled). Therefore, any "end to end" test that is to take place on the Vehicle page requires valid data to pass through the first page. The next two pages (reg. vehicles and drivers) allow the user to add as many vehicles and drivers as they want (eventually breaking the formatting). How should test data be organized so multiple 'vehicles' and 'person drivers' may be added on these pages? Finally, the last page is where the tester should validate the data entered on the previous screens. The message above each 'grouping' should reflect how many vehicles/persons were created in the navigation of the application. 
+
+The Testing Training Application is a stateless application with no supporting backend. It does not save or store any of the information after the browser is closed. 
+
+Access the Testing Training Application at: <br />
+https://policytrainer.orange-lightning.com/
+
+## Lifecycle
+
+### `nvm use v15.3.0`
+This project does not support the latest version of Node. Downgrade to a working version of node (using nvm) in order to build and start the project. 
+```
+nvm use v15.3.0
+```
+
+### `npm install`
+
+Installs dependencies.
 
 ### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `sam deploy --s3-bucket sam-resources-bucket --profile admin`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Deploy/Update the supporting infrastructure defined in the template.yml. Deployment is achieved using [SAM](https://aws.amazon.com/serverless/sam/). Even though there are no "serverless" resources in the template, sam provides regular resource status as CloudFormation does its thing. 
 
-### `npm run eject`
+### `aws s3 sync build/ s3://policytrainer --profile admin`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Publish the latest build to S3, making it available to end users. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Architecture
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<img src="https://user-images.githubusercontent.com/38666646/187098562-579a32df-00de-4435-9b63-262d6928cc3f.png" alt="training-app-architecture" width="500">
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The content origin is the `policytrainer` S3 bucket. The bucket is inaccessible except through CloudFront. The CloudFront url serves the content, but it accepts the alternate (and prettier) domain https://policytrainer.orange-lightning.com/. When accessing the site through CloudFront, the CloudFront certificate is used. However, when accessing from orange-lightning.com, the custom certificate is used instead. That certificate is defined [here](https://github.com/bgagnon93/aws-working-dir/tree/main/certificates/orange-lightning). 
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Since everything is defined with IaC, the entire CF stack could be terminated and restored at will. 

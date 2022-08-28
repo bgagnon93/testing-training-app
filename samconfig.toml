@@ -1,0 +1,12 @@
+version=0.1
+[default.global.parameters]
+stack_name = "policy-trainer"
+s3_bucket = "sam-resources-bucket"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = ["CAPABILITY_IAM", "CAPABILITY_NAMED_IAM"]
+
+[default.deploy.parameters]
+
+
+[default.build.parameters]

@@ -2,7 +2,7 @@
   "name": "testing-training-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bgagnon93.github.io/testing-training-app/",
+  "homepage": "https://policytrainer.orange-lightning.com/",
   "dependencies": {
     "@trendmicro/react-dropdown": "^1.3.0",
     "bootstrap": "^4.4.1",

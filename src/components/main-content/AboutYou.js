@@ -29,6 +29,12 @@ class AboutYou extends React.Component {
             this.props.nextPage()
             this.props.updateAboutYou(this.state)
         }
+        // Adding else condition to continue even if required fields are not provided. Comment the else condition out to restore previous behavior.
+        // I am removing the requirement for inputting these fields so the application is easier to navigate for demo purposes.
+        else {
+            this.props.nextPage()
+            this.props.updateAboutYou(this.state)
+        }
     }
 
     render() {
