@@ -38,7 +38,7 @@ Publish the latest build to S3, making it available to end users.
 
 ## Architecture
 
-<img src="https://user-images.githubusercontent.com/38666646/187098562-579a32df-00de-4435-9b63-262d6928cc3f.png" alt="training-app-architecture" width="500">
+<img src="https://user-images.githubusercontent.com/38666646/187100897-783ebf0d-13b6-480f-b750-ea4fb04945b8.png" alt="training-app-architecture" width="500">
 
 The content origin is the `policytrainer` S3 bucket. The bucket is inaccessible except through CloudFront. The CloudFront url serves the content, but it accepts the alternate (and prettier) domain https://policytrainer.orange-lightning.com/. When accessing the site through CloudFront, the CloudFront certificate is used. However, when accessing from orange-lightning.com, the custom certificate is used instead. That certificate is defined [here](https://github.com/bgagnon93/aws-working-dir/tree/main/certificates/orange-lightning). 
 
