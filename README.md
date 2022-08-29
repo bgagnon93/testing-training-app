@@ -7,7 +7,7 @@ From a test perspective, the training application highlights how important data 
 The Testing Training Application is a stateless application with no supporting backend. It does not save or store any of the information after the browser is closed. 
 
 Access the Testing Training Application at: <br />
-https://policytrainer.orange-lightning.com/
+https://policytrainer.gagnonagon.com/
 
 ## Lifecycle
 
@@ -40,6 +40,6 @@ Publish the latest build to S3, making it available to end users.
 
 <img src="https://user-images.githubusercontent.com/38666646/187100897-783ebf0d-13b6-480f-b750-ea4fb04945b8.png" alt="training-app-architecture" width="500">
 
-The content origin is the `policytrainer` S3 bucket. The bucket is inaccessible except through CloudFront. The CloudFront url serves the content, but it accepts the alternate (and prettier) domain https://policytrainer.orange-lightning.com/. When accessing the site through CloudFront, the CloudFront certificate is used. However, when accessing from orange-lightning.com, the custom certificate is used instead. That certificate is defined [here](https://github.com/bgagnon93/aws-working-dir/tree/main/certificates/orange-lightning). 
+The content origin is the `policytrainer` S3 bucket. The bucket is inaccessible except through CloudFront. The CloudFront url serves the content, but it accepts the alternate (and prettier) domain https://policytrainer.gagnonagon.com/. When accessing the site through CloudFront, the CloudFront certificate is used. However, when accessing from gagnonagon.com, the custom certificate is used instead. That certificate is defined [here](https://github.com/bgagnon93/aws-working-dir/tree/main/certificates/gagnonagon). 
 
 Since everything is defined with IaC, the entire CF stack could be terminated and restored at will. 
